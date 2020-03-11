@@ -1,5 +1,8 @@
 image: docker:git
 
+services:
+- docker:dind
+
 before_script:
   - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   
