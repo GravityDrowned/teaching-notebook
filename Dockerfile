@@ -1,5 +1,5 @@
 #FROM jupyter/minimal-notebook
-#FROM jupyter/scipy-notebook
+FROM jupyter/scipy-notebook
 
 # Use apt to install rsync, ssh, less, tree
 USER root
