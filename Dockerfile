@@ -14,7 +14,7 @@ RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-u-psud.fr//`"@jupyterhub 
 
 USER $NB_UID
 
-RUN conda update  -n base -c conda-forge conda
+RUN conda update  -n base -c conda-forge --update-all
 RUN conda install -n base -c conda-forge mamba
 
 RUN for REPO in                                                \
