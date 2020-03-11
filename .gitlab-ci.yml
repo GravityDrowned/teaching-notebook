@@ -16,3 +16,4 @@ build-image:
    - echo $CI_REGISTRY
    - echo $CI_COMMIT_SHA
    - docker build -t gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image .
+#   - docker push gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image   
