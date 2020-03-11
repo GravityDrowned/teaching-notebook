@@ -1,0 +1,48 @@
+image: docker:git
+#
+#
+services:
+- docker:dind
+ 
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  CONTAINER_IMAGE: registry.gitlab.com/codebabel/$CI_PROJECT_NAME #Workaround https://gitlab.com/gitlab-org/gitlab-ce/issues/23339
+ 
+before_script:
+  #- docker login gitlab-registry.in2p3.fr
+  - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  ##- docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  
+after_script:
+  - 'docker logout $CI_REGISTRY'
+
+build-image:
+  stage: build
+  tags:
+  - dind
+  variables:
+    REPOSITORY: https://github.com/nthiery/Info111-notebooks
+    NB_USER: jupyter
+    NB_ID: 1000
+  script:
+  - IMAGE_TAG="$(date +%Y%m%d:%H%M%S)"
+  - IMAGE_NAME="$CI_REGISTRY/$CI_PROJECT_PATH/$IMAGE_TAG"
+  - /opt/app/repo2docker/bin/repo2docker --image-name $IMAGE_NAME
+                                         --user-name $NB_USER
+                                         --user-id $NB_ID
+                                         --no-run
+                                         $repository
+#stages:
+#  - build and stage
+ 
+job 1:
+  stage: build #and stage
+  script:
+   - echo $CI_REGISTRY_PASSWORD
+   - echo $CI_REGISTRY
+   - echo $CI_COMMIT_SHA
+   - docker build -t gitlab-registry.in2p3.fr/spark/test-jupyterhub .
+#   #- docker build -t $CONTAINER_IMAGE:$CI_COMMIT_SHA . 
+#   - docker push gitlab-registry.in2p3.fr/spark/test-jupyterhub
+   #- docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA
