@@ -18,10 +18,10 @@ RUN conda update  -n base -c conda-forge --update-all
 RUN conda install -n base -c conda-forge mamba
 
 RUN for REPO in                                                \
+        https://gitlab.u-psud.fr/MethNum/scripts.git           \
         https://gitlab.u-psud.fr/Info111/outbound.git          \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
         https://github.com/madclam/info113/                    \
-        https://gitlab.u-psud.fr/MethNum/scripts.git           \
         https://github.com/nthiery/M1-ISD-AlgorithmiqueAvancee \
         https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
         ; do                                                   \
@@ -30,7 +30,7 @@ RUN for REPO in                                                \
         echo   $REPO                                          ;\
         echo =================================================;\
         git clone $REPO repo                        &&         \
-        (cd repo; test -d binder && cd binder; mamba env update -n base -f environment.yml) &&         \
+        (cd repo; test -d binder && cd binder; conda env update -n base -f environment.yml) &&         \
         rm -rf repo                                 ||         \
         break 0;                                               \
     done
