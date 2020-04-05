@@ -39,3 +39,4 @@ RUN for REPO in                                                \
 # FactoMineR package: used by Albane Saintenoy and students for PCA / clustering
 # in the course "Traitement de données hydrologiques" of M2 HSS
 RUN mamba install -c conda-forge r r-essentials r-factominer
+RUN jupyter labextension install @wallneradam/run_all_buttons
