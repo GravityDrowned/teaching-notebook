@@ -1,7 +1,7 @@
-#FROM jupyter/minimal-notebook
 FROM jupyter/scipy-notebook
+#FROM jupyter/minimal-notebook
 
-# Use apt to install rsync, ssh, less, tree
+# Install system utilities with apt
 USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick && \
@@ -10,13 +10,14 @@ RUN apt-get update && \
 
 RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-u-psud.fr//`"@jupyterhub \w \$ "' > /root/.bash_profile
 
-# Use conda to install the software stack from the relevant repositories
-
+# Install conda software stack
 USER $NB_UID
-
 RUN conda update  -n base -c conda-forge --update-all
-RUN conda install -n base -c conda-forge mamba
 
+# Install the base software stack
+RUN conda env update -n base -f environment.yml
+
+# Install the software stack for each of the following repositories
 RUN for REPO in                                                \
         https://gitlab.u-psud.fr/MethNum/scripts.git           \
         https://gitlab.u-psud.fr/Info111/outbound.git          \
@@ -30,13 +31,10 @@ RUN for REPO in                                                \
         echo   $REPO                                          ;\
         echo =================================================;\
         git clone $REPO repo                        &&         \
-        (cd repo; test -d binder && cd binder; conda env update -n base -f environment.yml) &&         \
+        (cd repo; test -d binder && cd binder; mamba env update -n base -f environment.yml) &&         \
         rm -rf repo                                 ||         \
         break 0;                                               \
     done
 
-# R: potential users at STAPS
-# FactoMineR package: used by Albane Saintenoy and students for PCA / clustering
-# in the course "Traitement de données hydrologiques" of M2 HSS
-RUN mamba install -c conda-forge r r-essentials r-factominer
+# Install unpackaged jupyterlab extensions and force jupyterlab rebuild
 RUN jupyter labextension install @wallneradam/run_all_buttons

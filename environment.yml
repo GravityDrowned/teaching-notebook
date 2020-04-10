@@ -1,0 +1,35 @@
+# Software installed by default on Paris-Saclay JupyterHub's server
+name: jupyterhub-paris-saclay
+
+channels:
+- conda-forge
+
+dependencies:
+- mamba
+- notebook
+- jupyterlab
+- jupyter_contrib_nbextensions
+- ipywidgets
+- rise
+- pip
+- pip:
+    - nbdime
+
+# Some additional packages that don't have a specific repo yet
+
+# Visualisation
+- matplotlib
+- cycler         # missing matplotlib dependecy: https://stackoverflow.com/questions/44419333/matplotlib-cant-find-cycler
+
+# Data analysis
+- pandas         # for managing grades
+- xlrd           # Excel file import / export
+- pivottablejs
+- qgrid
+
+# R: potential users at STAPS
+- r
+- r-essentials
+# FactoMineR package: used by Albane Saintenoy and students for PCA / clustering
+# in the course "Traitement de données hydrologiques" of M2 HSS
+- r-factominer
