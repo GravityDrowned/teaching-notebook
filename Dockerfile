@@ -7,15 +7,15 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+USER $NB_UID
 
+# Setup default prompt
 RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-u-psud.fr//`"@jupyterhub \w \$ "' > /root/.bash_profile
 
-# Install conda software stack
-USER $NB_UID
-RUN conda update  -n base -c conda-forge --update-all
-
 # Install the base software stack
-RUN conda env update -n base -f environment.yml
+RUN conda update  -n base -c conda-forge --update-all
+COPY environment.yml .
+RUN conda env update -n base -f environment.yml && rm environment.yml
 
 # Install the software stack for each of the following repositories
 RUN for REPO in                                                \
