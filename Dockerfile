@@ -1,16 +1,18 @@
 FROM jupyter/scipy-notebook
 #FROM jupyter/minimal-notebook
 
-# Install system utilities with apt
 USER root
+
+# Install system utilities with apt
 RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-USER $NB_UID
 
 # Setup default prompt
 RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-u-psud.fr//`"@jupyterhub \w \$ "' > /root/.bash_profile
+
+USER $NB_UID
 
 # Install the base software stack
 RUN conda update  -n base -c conda-forge --update-all
