@@ -21,14 +21,15 @@ dependencies:
 - cycler         # missing matplotlib dependecy: https://stackoverflow.com/questions/44419333/matplotlib-cant-find-cycler
 
 # Data analysis
-- pandas         # for managing grades
+- pandas         # dataframes
 - xlrd           # Excel file import / export
-- pivottablejs
-- qgrid
+- pivottablejs   # dataframes in-browser visualization
+- qgrid          # same
 
 # R: potential users at STAPS
 - r
 - r-essentials
-# FactoMineR package: used by Albane Saintenoy and students for PCA / clustering
+
+# FactoMineR package: potential use by Albane Saintenoy and students for PCA / clustering
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
