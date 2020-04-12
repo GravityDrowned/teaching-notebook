@@ -33,3 +33,8 @@ dependencies:
 # FactoMineR package: potential use by Albane Saintenoy and students for PCA / clustering
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
+
+# For Erwan Pannier <erwan.pannier@centralesupelec.fr>
+# A fast line-by-line code for high-resolution infrared molecular spectra
+- pip:
+    - radis
