@@ -11,9 +11,8 @@ dependencies:
 - jupyter_contrib_nbextensions
 - ipywidgets
 - rise
+- nbdime
 - pip
-- pip:
-    - nbdime
 
 # Some additional packages that don't have a specific repo yet
 
