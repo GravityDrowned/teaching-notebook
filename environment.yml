@@ -18,7 +18,7 @@ dependencies:
 
 # Visualisation
 - matplotlib
-- cycler         # missing matplotlib dependecy: https://stackoverflow.com/questions/44419333/matplotlib-cant-find-cycler
+- cycler         # missing matplotlib dependency: https://stackoverflow.com/questions/44419333/matplotlib-cant-find-cycler
 
 # Data analysis
 - pandas         # dataframes
