@@ -44,4 +44,4 @@ dependencies:
     # A fast line-by-line code for high-resolution infrared molecular spectra
     - radis
     # Visual Studio (proxy)
-    - git+https://github.com/betatim/vscode-binder.git
+    - jupyter-vscode-proxy
