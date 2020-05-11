@@ -11,10 +11,13 @@ dependencies:
 - jupyter_contrib_nbextensions
 - jupyter-offlinenotebook      # UI to save/... the notebook even when the server connection is lost
 - ipywidgets
-- code-server                  # Visual Studio
 - rise
 - nbdime
 - pip
+
+# Visual Studio (conda packages)
+- code-server
+- jupyter-server-proxy
 
 # Some additional packages that don't have a specific repo yet
 
@@ -36,7 +39,9 @@ dependencies:
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
 
-# For Erwan Pannier <erwan.pannier@centralesupelec.fr>
-# A fast line-by-line code for high-resolution infrared molecular spectra
 - pip:
+    # For Erwan Pannier <erwan.pannier@centralesupelec.fr>
+    # A fast line-by-line code for high-resolution infrared molecular spectra
     - radis
+    # Visual Studio (proxy)
+    - git+https://github.com/betatim/vscode-binder.git

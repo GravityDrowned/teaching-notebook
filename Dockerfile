@@ -38,5 +38,11 @@ RUN for REPO in                                                \
         break 0;                                               \
     done
 
+# Enable the Visual Studio proxy extension in notebook and lab
+# Taken from https://github.com/betatim/vscode-binder/blob/master/postBuild
+RUN jupyter serverextension enable --py jupyter_server_proxy
+RUN jupyter labextension install @jupyterlab/server-proxy
+RUN code-server --install-extension ms-python.python
+
 # Install unpackaged jupyterlab extensions and force jupyterlab rebuild
 RUN jupyter labextension install @wallneradam/run_all_buttons
