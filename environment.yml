@@ -10,9 +10,9 @@ dependencies:
 - jupyterlab
 - jupyter_contrib_nbextensions
 - jupyter-offlinenotebook      # UI to save/... the notebook even when the server connection is lost
-- ipywidgets
-- rise
-- nbdime
+- ipywidgets                   # Interactive widgets
+- rise                         # Slides
+- nbdime                       # Jupyter-git integration
 - pip
 
 # Visual Studio (conda packages)
