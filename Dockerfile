@@ -1,11 +1,12 @@
-FROM jupyter/scipy-notebook
+FROM jupyter/tensorflow-notebook
+# FROM jupyter/scipy-notebook # just commented out
 #FROM jupyter/minimal-notebook
 
 USER root
 
 # Install system utilities with apt
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick && \
+    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
