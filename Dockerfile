@@ -10,8 +10,10 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Setup default prompt and enable extended file globs
-RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-u-psud.fr//`"@jupyterhub \w \$ "\nshopt -s extglob' > /root/.bash_profile
+# Setup default prompt
+RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-.*//`"@jupyterhub:\w\$ "' > /etc/profile.d/02-prompt.sh
+# Enable extended file globs in bash
+RUN echo 'shopt -s extglob' > /etc/profile.d/03-extglob.sh
 
 USER $NB_UID
 
