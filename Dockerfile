@@ -12,6 +12,8 @@ RUN apt-get update && \
 
 # Setup default prompt
 RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-.*//`"@jupyterhub:\w\$ "' > /etc/profile.d/02-prompt.sh
+# Hack to override the setting of PS1 in the users's bashrc
+RUN ln -s /etc/profile.d/02-prompt.sh /etc/bash_completion
 # Enable extended file globs in bash
 RUN echo 'shopt -s extglob' > /etc/profile.d/03-extglob.sh
 
