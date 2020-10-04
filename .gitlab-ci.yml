@@ -1,20 +1,17 @@
 image: docker:git
-#
 
 services:
 - docker:dind
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  
+
 after_script:
   - 'docker logout $CI_REGISTRY'
 
 build-image:
   stage: build #and stage
   script:
-   - echo $CI_REGISTRY_PASSWORD
-   - echo $CI_REGISTRY
-   - echo $CI_COMMIT_SHA
+   - docker pull jupyter/tensorflow-notebook
    - docker build -t gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image .
    - docker push gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image
