@@ -6,7 +6,7 @@ USER root
 
 # Install system utilities with apt
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 && \
+    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 sagemath && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -26,6 +26,7 @@ RUN conda env update -n base -f environment.yml && rm environment.yml
 
 # Install the software stack for each of the following repositories
 RUN for REPO in                                                \
+        https://gitlab.u-psud.fr/MethNum/scripts.git           \
         https://gitlab.u-psud.fr/Info111/outbound.git          \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
         https://github.com/madclam/info113/                    \
