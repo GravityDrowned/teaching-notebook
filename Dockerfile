@@ -6,7 +6,7 @@ USER root
 
 # Install system utilities with apt
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 sagemath && \
+    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -42,6 +42,9 @@ RUN for REPO in                                                \
         rm -rf repo                                 ||         \
         break 0;                                               \
     done
+
+# Install SageMath, for now in a different environment
+RUN mamba create -n sage sage=9.1
 
 # Enable the Visual Studio proxy extension in notebook and lab
 # Taken from https://github.com/betatim/vscode-binder/blob/master/postBuild
