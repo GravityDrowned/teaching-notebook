@@ -5,8 +5,9 @@ FROM jupyter/tensorflow-notebook
 USER root
 
 # Install system utilities with apt
+# Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 && \
+    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 ocaml rlwrap && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
