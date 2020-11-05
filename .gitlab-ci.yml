@@ -12,6 +12,7 @@ build_image:
   before_script:
     - podman login --username "${CI_REGISTRY_USER}" --password "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
   script:
+    - buildah pull jupyter/tensorflow-notebook
     - buildah bud --format docker -t ${DEPENDENCIES_IMAGE_NAME} .
     - buildah push --authfile ${REGISTRY_AUTH_FILE} ${DEPENDENCIES_IMAGE_NAME}
   after_script:
