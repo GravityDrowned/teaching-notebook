@@ -17,6 +17,10 @@ RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-.*//`"@jupyterhub:\w\$ "'
 RUN ln -s /etc/profile.d/02-prompt.sh /etc/bash_completion
 # Enable extended file globs in bash
 RUN echo 'shopt -s extglob' > /etc/profile.d/03-extglob.sh
+# With the current jupyter emage, conda is activated via
+# /etc/skels/.bashrc; older accounts may not beneficiate from it.
+# Force activation for everyone.
+RUN echo 'eval "$(command conda shell.bash hook 2> /dev/null)"' > /etc/profile.d/04-conda-activate.sh
 
 USER $NB_UID
 
