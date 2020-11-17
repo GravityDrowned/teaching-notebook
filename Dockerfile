@@ -25,7 +25,7 @@ RUN echo 'eval "$(command conda shell.bash hook 2> /dev/null)"' > /etc/profile.d
 USER $NB_UID
 
 # Install the base software stack
-RUN conda update  -n base -c conda-forge --update-all
+# RUN conda update  -n base -c conda-forge --update-all
 COPY environment.yml .
 RUN conda env update -n base -f environment.yml && rm environment.yml
 
