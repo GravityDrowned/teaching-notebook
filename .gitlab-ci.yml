@@ -1,23 +1,17 @@
-stages:
-- build
+image: docker:git
 
-variables:
-  DEPENDENCIES_IMAGE_NAME: ${CI_REGISTRY_IMAGE}/image:latest
-  STORAGE_DRIVER: vfs # for buildah
-  REGISTRY_AUTH_FILE: /root/auth.json
+services:
+- docker:dind
 
-build_image:
-  stage: build
-  image: tomkukral/buildah
-  before_script:
-    - podman login --username "${CI_REGISTRY_USER}" --password "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+after_script:
+  - 'docker logout $CI_REGISTRY'
+
+build-image:
+  stage: build #and stage
   script:
-    - buildah pull jupyter/tensorflow-notebook
-    - buildah bud --format docker -t ${DEPENDENCIES_IMAGE_NAME} .
-    - buildah push --authfile ${REGISTRY_AUTH_FILE} ${DEPENDENCIES_IMAGE_NAME}
-  after_script:
-    - podman logout "${CI_REGISTRY}"
-  only:
-    changes:
-      - Dockerfile
-      - binder/*
+   - docker pull jupyter/tensorflow-notebook
+   - docker build -t gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image .
+   - docker push gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image
