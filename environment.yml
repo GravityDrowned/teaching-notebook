@@ -11,7 +11,7 @@ dependencies:
 - jupyter_contrib_nbextensions
 - jupyter-offlinenotebook      # UI to save/... the notebook even when the server connection is lost
 - ipywidgets                   # Interactive widgets
-- rise                         # Slides
+#- rise                         # Slides
 - nbdime                       # Jupyter-git integration
 - nb_conda_kernels             # In particular for sagemath which is not installed by conda
 - pip
