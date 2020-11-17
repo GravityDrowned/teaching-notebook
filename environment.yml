@@ -36,6 +36,9 @@ dependencies:
 - r
 - r-essentials
 
+# SageMath
+- sage
+
 # FactoMineR package: potential use by Albane Saintenoy and students for PCA / clustering
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
