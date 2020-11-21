@@ -7,7 +7,11 @@ USER root
 # Install system utilities with apt
 # Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 ocaml rlwrap && \
+    apt-get install -y --no-install-recommends \
+        openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 \
+        ocaml rlwrap \
+        net-tools traceroute iputils-ping \
+        dbus-x11 xfce4 xfce4-panel xfce4-session xfce4-settings xorg xubuntu-icon-theme && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

@@ -20,6 +20,9 @@ dependencies:
 - code-server
 - jupyter-server-proxy
 
+# jupyter-desktop-server
+- websockify
+
 # Some additional packages that don't have a specific repo yet
 
 # Visualisation
@@ -49,3 +52,5 @@ dependencies:
     - radis
     # Visual Studio (proxy)
     - jupyter-vscode-proxy
+    # jupyter-desktop-server
+    - jupyter-desktop-server
