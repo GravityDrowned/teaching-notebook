@@ -32,7 +32,7 @@ dependencies:
 # Data analysis
 - pandas         # dataframes
 - xlrd           # Excel file import / export
-- pivottablejs   # dataframes in-browser visualization
+- jupyter_pivottablejs   # dataframes in-browser visualization
 - qgrid          # same
 
 # R: potential users at STAPS
