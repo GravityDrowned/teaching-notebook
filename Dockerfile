@@ -51,6 +51,10 @@ RUN mamba env update -n base -f environment.yml && rm environment.yml
 RUN for REPO in                                                \
         https://gitlab.u-psud.fr/MethNum/scripts.git           \
         https://gitlab.u-psud.fr/Info111/ComputerLab.git       \
+        https://gitlab.u-psud.fr/Info122/Info122.git           \
+        https://github.com/madclam/info113/                    \
+        https://github.com/nthiery/M1-ISD-AlgorithmiqueAvancee \
+        https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
         ; do                                                   \
         echo =================================================;\
         echo Installing software stack for:                   ;\
