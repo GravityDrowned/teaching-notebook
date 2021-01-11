@@ -34,10 +34,13 @@ RUN echo 'kernel.core_uses_pid = 0' > /etc/sysctl.d/60-local.conf
 
 USER $NB_UID
 
+# Install mamba
+RUN conda install mamba -c conda-forge
+
 # Install the base software stack
 # RUN conda update  -n base -c conda-forge --update-all
 COPY environment.yml .
-RUN conda env update -n base -f environment.yml && rm environment.yml
+RUN mamba env update -n base -f environment.yml && rm environment.yml
 
 # https://gitlab.u-psud.fr/Info122/Info122.git           \
 # https://github.com/madclam/info113/                    \
