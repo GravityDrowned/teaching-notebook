@@ -42,17 +42,16 @@ RUN conda install mamba -c conda-forge
 COPY environment.yml .
 RUN mamba env update -n base -f environment.yml && rm environment.yml
 
-# https://gitlab.u-psud.fr/Info122/Info122.git           \
-# https://github.com/madclam/info113/                    \
-# https://github.com/nthiery/M1-ISD-AlgorithmiqueAvancee \
-# https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
+# The repo for the course "Introduction à la science des données"
+# is outdated and clashes with other courses (nbgrader configuration).
+# Disabled
+#  https://github.com/madclam/info113/                    \
 
 # Install the software stack for each of the following repositories
 RUN for REPO in                                                \
         https://gitlab.u-psud.fr/MethNum/scripts.git           \
         https://gitlab.u-psud.fr/Info111/ComputerLab.git       \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
-        https://github.com/madclam/info113/                    \
         https://github.com/nthiery/M1-ISD-AlgorithmiqueAvancee \
         https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
         ; do                                                   \
@@ -72,8 +71,14 @@ RUN for REPO in                                                \
 # Enable the Visual Studio proxy extension in notebook and lab
 # Taken from https://github.com/betatim/vscode-binder/blob/master/postBuild
 RUN jupyter serverextension enable --py jupyter_server_proxy
-RUN jupyter labextension install @jupyterlab/server-proxy
+RUN jupyter labextension install @jupyterlab/server-proxy --nobuild
 #RUN code-server --install-extension ms-python.python
 
-# Install unpackaged jupyterlab extensions and force jupyterlab rebuild
-RUN jupyter labextension install @wallneradam/run_all_buttons
+# Install unpackaged jupyterlab extensions
+RUN jupyter labextension install @wallneradam/run_all_buttons --nobuild
+
+# Force jupyterlab rebuild (see https://github.com/jupyterlab/jupyterlab/issues/4930)
+RUN jupyter lab build && \
+    jupyter lab clean && \
+    jlpm cache clean && \
+    npm cache clean --force
