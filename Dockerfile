@@ -9,7 +9,7 @@ USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 \
-        ocaml rlwrap \
+        ocaml rlwrap dune js-of-ocaml libjs-of-ocaml \
         net-tools traceroute iputils-ping \
         time \
         dbus-x11 xfce4 xfce4-panel xfce4-session xfce4-settings xorg xubuntu-icon-theme && \
