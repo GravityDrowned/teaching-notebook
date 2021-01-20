@@ -11,6 +11,7 @@ RUN apt-get update && \
         openssh-client rsync unison less tree curl gdb imagemagick libopenjp2-7 \
         ocaml rlwrap \
         net-tools traceroute iputils-ping \
+        time \
         dbus-x11 xfce4 xfce4-panel xfce4-session xfce4-settings xorg xubuntu-icon-theme && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
