@@ -46,6 +46,9 @@ dependencies:
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
 
+# Attempt to avoid it being installed by pip in later environments
+- py-yaml
+
 - pip:
     # For Erwan Pannier <erwan.pannier@centralesupelec.fr>
     # A fast line-by-line code for high-resolution infrared molecular spectra
