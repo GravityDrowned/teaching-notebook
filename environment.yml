@@ -47,7 +47,7 @@ dependencies:
 - r-factominer
 
 # Attempt to avoid it being installed by pip in later environments
-- py-yaml
+- pyyaml
 
 - pip:
     # For Erwan Pannier <erwan.pannier@centralesupelec.fr>
