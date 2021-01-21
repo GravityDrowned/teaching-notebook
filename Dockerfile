@@ -45,7 +45,7 @@ RUN mamba env update -n base -f environment.yml && rm environment.yml
 
 # Workaround: pip installed nbgrader-dev requires pyyaml 5.4
 # but pip refuses by default to upgrade conda's pyyaml 5.3
-RUN sudo -H pip3 install --ignore-installed PyYAML
+RUN pip3 install --ignore-installed PyYAML
 
 # The repo for the course "Introduction à la science des données"
 # is outdated and clashes with other courses (nbgrader configuration).
