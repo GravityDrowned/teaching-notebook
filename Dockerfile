@@ -91,4 +91,8 @@ RUN jupyter labextension install @wallneradam/run_all_buttons
 # Force nbgrader extension reinstallation to ensure 0.7.dev
 RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
     jupyter nbextension enable --sys-prefix --py nbgrader && \
-    jupyter serverextension enable --sys-prefix --py nbgrader
+    jupyter serverextension enable --sys-prefix --py nbgrader && \
+    jupyter lab clean && \
+    jlpm cache clean && \
+    npm cache clean --force && \
+    pip cache prune
