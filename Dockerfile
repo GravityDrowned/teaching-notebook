@@ -80,7 +80,9 @@ RUN jupyter labextension install @jupyterlab/server-proxy
 #RUN code-server --install-extension ms-python.python
 
 # Install unpackaged jupyterlab extensions
-RUN jupyter labextension install @wallneradam/run_all_buttons
+# run_all_buttons is currently incompatible with latest JupyterLab 3;
+# ignoring error message for now
+RUN jupyter labextension install @wallneradam/run_all_buttons; exit 0
 
 # # Force jupyterlab rebuild (see https://github.com/jupyterlab/jupyterlab/issues/4930)
 # RUN jupyter lab build && \
