@@ -31,7 +31,7 @@ RUN echo 'eval "$(command conda shell.bash hook 2> /dev/null)"' > /etc/profile.d
 RUN echo 'ulimit -c 10000; ulimit -f 100000' > /etc/profile.d/05-ulimit.sh
 RUN echo 'ulimit -c 10000; ulimit -f 100000' > /etc/profile.d/05-ulimit.sh
 # Force core files to be named 'core'
-RUN echo 'kernel.core_uses_pid = 0' > /etc/sysctl.d/60-local.conf
+RUN (echo 'kernel.core_uses_pid = 0'; echo 'kernel.core_pattern = core') > /etc/sysctl.d/60-local.conf
 
 USER $NB_UID
 
