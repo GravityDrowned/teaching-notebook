@@ -97,4 +97,4 @@ RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
     jupyter lab clean && \
     jlpm cache clean && \
     npm cache clean --force && \
-    pip cache prune
+    pip cache purge; exit 0
