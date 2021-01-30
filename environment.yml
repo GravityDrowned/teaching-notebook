@@ -14,6 +14,7 @@ dependencies:
 #- rise                         # Slides
 - nbdime                       # Jupyter-git integration
 #- nb_conda_kernels             # In particular for sagemath which is not installed by conda
+- voila                        # Voilà standalone applications and dashboards
 - pip
 
 # Visual Studio (conda packages)
