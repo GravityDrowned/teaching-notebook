@@ -14,7 +14,8 @@ foo:
 
 build-image:
   stage: build #and stage
-  services: docker:dind
+  services:
+    - docker:dind
   image: docker:git
 
   before_script:
