@@ -1,9 +1,16 @@
 stages:
+  - foo
   - build
   - test
 
 variables:
   IMAGE: ${CI_REGISTRY_IMAGE}
+
+foo:
+  image: docker:git
+  stage: foo
+  script:
+    - git clone https://github.com/takluyver/mobilechelonian.git
 
 build-image:
   stage: build #and stage
