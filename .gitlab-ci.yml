@@ -1,17 +1,32 @@
-image: docker:git
+stages:
+  - build
+  - test
 
-services:
-- docker:dind
-
-before_script:
-  - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-
-after_script:
-  - 'docker logout $CI_REGISTRY'
+variables:
+  IMAGE: ${CI_REGISTRY_IMAGE}
 
 build-image:
   stage: build #and stage
+  services: docker:dind
+  image: docker:git
+
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-   - docker pull jupyter/tensorflow-notebook
-   - docker build -t gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image .
-   - docker push gitlab-registry.in2p3.fr/jupyterhub-paris-saclay/image
+    - docker pull jupyter/tensorflow-notebook
+    - docker build -t ${IMAGE} .
+    - docker push ${IMAGE}
+  after_script:
+    - 'docker logout $CI_REGISTRY'
+
+  only:
+    changes:
+      - Dockerfile
+      - environment.yml
+
+image: ${IMAGE}
+
+tests_python_packages:
+  stage: test
+  script:
+    - pytest
