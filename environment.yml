@@ -37,16 +37,20 @@ dependencies:
 - jupyter_pivottablejs   # dataframes in-browser visualization
 - qgrid          # same
 
-# R: potential users at STAPS
+# R
 - r
 - r-essentials
-
-# SageMath
-- sage
-
+- r-animation
+- r-psych
+- r-metRology
+- r-cowplot
+- r-ggdist
 # FactoMineR package: potential use by Albane Saintenoy and students for PCA / clustering
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
+
+# SageMath
+- sage
 
 - pip:
     # For Erwan Pannier <erwan.pannier@centralesupelec.fr>
