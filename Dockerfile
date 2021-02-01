@@ -57,7 +57,7 @@ RUN for REPO in                                                \
         https://gitlab.u-psud.fr/MethNum/scripts.git           \
         https://gitlab.u-psud.fr/Info111/ComputerLab.git       \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
-        https://github.com/nthiery/M1-ISD-AlgorithmiqueAvancee \
+        https://gitlab.u-psud.fr/M1-ISD/AlgorithmiqueAvancee/Instructors \
         https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
         ; do                                                   \
         echo =================================================;\
