@@ -54,7 +54,7 @@ RUN pip3 install --ignore-installed PyYAML
 
 # Install the software stack for each of the following repositories
 RUN for REPO in                                                \
-        https://gitlab.u-psud.fr/MethNum/scripts.git           \
+        https://gitlab.u-psud.fr/nicolas.thiery/scripts.git           \
         https://gitlab.u-psud.fr/Info111/ComputerLab.git       \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
         https://gitlab.u-psud.fr/M1-ISD/AlgorithmiqueAvancee/Instructors \
