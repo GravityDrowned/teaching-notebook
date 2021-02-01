@@ -27,6 +27,7 @@ dependencies:
 # Some additional packages that don't have a specific repo yet
 
 # Visualisation
+- imagemagick    # used e.g. by R package animation, and many more
 - matplotlib
 - cycler         # missing matplotlib dependency: https://stackoverflow.com/questions/44419333/matplotlib-cant-find-cycler
 

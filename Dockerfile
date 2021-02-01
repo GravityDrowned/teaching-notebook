@@ -8,7 +8,7 @@ USER root
 # Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        openssh-client rsync unison less tree curl gdb imagemagick libmagick++-dev libopenjp2-7 \
+        openssh-client rsync unison less tree curl gdb libopenjp2-7 \
         ocaml rlwrap dune js-of-ocaml libjs-of-ocaml \
         net-tools traceroute iputils-ping \
         time \
