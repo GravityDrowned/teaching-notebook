@@ -10,7 +10,7 @@ foo:
   image: docker:git
   stage: foo
   script:
-    - git clone https://github.com/takluyver/mobilechelonian.git
+    - git clone https://github.com/jupyterhub/nbgitpuller.git
 
 build-image:
   stage: build #and stage
