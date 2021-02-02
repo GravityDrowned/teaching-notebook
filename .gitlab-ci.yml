@@ -5,11 +5,11 @@ stages:
 variables:
   IMAGE: ${CI_REGISTRY_IMAGE}
 
-foo:
+debug:
   image: docker:git
   stage: test
   script:
-    - git clone http://github.com/jupyterhub/nbgitpuller.git
+    - git clone https://github.com/jupyterhub/nbgitpuller.git
 
 build-image:
   stage: build #and stage
