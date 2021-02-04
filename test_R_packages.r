@@ -3,10 +3,9 @@
 library("animation")
 library("cowplot")
 library("ggdist")
-library("factominer")
+library("FactoMineR")
 library("psych")
 #library("magick")
-library("r-metrology")
 
 # These packages are not available through conda; check that they can
 # be installed by the user:
