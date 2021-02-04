@@ -24,6 +24,6 @@ install.packages("RWiener",   keep_outputs=TRUE, verbose=TRUE)
 # Test that these manually R packages are available and functional
 
 library("metRology")
-library("psycho)
+library("psycho")
 library("rAverage")
 library("RWiener")
