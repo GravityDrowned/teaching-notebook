@@ -42,7 +42,7 @@ dependencies:
 - r-essentials
 - r-animation
 - r-psych
-#- r-metrology # nothing provide r-metrology ???
+- r-metrology # nothing provide r-metrology ???
 - r-cowplot
 - r-ggdist
 # FactoMineR package: potential use by Albane Saintenoy and students for PCA / clustering
