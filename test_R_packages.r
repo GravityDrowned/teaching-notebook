@@ -1,7 +1,24 @@
+# Test that these preinstalled R packages are available and functional
+
 library("animation")
 library("cowplot")
 library("ggdist")
-library("psych")
 library("factominer")
-library("r-metrology")
+library("psych")
 #library("magick")
+library("r-metrology")
+
+# These packages are not available through conda; check that they can
+# be installed by the user:
+
+install.packages("metRology", keep_outputs=TRUE, verbose=TRUE)
+install.packages("psycho",    keep_outputs=TRUE, verbose=TRUE)
+install.packages("rAverage",  keep_outputs=TRUE, verbose=TRUE)
+install.packages("RWiener",   keep_outputs=TRUE, verbose=TRUE)
+
+# Test that these manually R packages are available and functional
+
+library("metRology")
+library("psycho)
+library("rAverage")
+library("RWiener")
