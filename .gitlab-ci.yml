@@ -31,3 +31,8 @@ tests_python_packages:
   stage: test
   script:
     - pytest
+
+tests_R_packages:
+  stage: test
+  script:
+    - R < test_R_packages.r --no-save
