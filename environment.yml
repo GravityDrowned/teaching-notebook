@@ -38,11 +38,10 @@ dependencies:
 - qgrid          # same
 
 # R
-- r
-- r-essentials
+- r-recommended
 - r-animation
 - r-psych
-- r-metrology # nothing provide r-metrology ???
+# - r-metrology # as of 2021-02-08 this forces a downgrade to R 3.6
 - r-cowplot
 - r-ggdist
 # FactoMineR package: potential use by Albane Saintenoy and students for PCA / clustering
