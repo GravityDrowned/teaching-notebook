@@ -51,6 +51,10 @@ dependencies:
 # SageMath
 - sage
 
+# Octave
+- octave
+- octave_kernel
+
 - pip:
     # For Erwan Pannier <erwan.pannier@centralesupelec.fr>
     # A fast line-by-line code for high-resolution infrared molecular spectra
