@@ -17,6 +17,10 @@ dependencies:
 - voila                        # Voilà standalone applications and dashboards
 - pip
 
+# Compilation tools (for compilation courses)
+- bison
+- flex
+
 # Visual Studio (conda packages)
 - code-server
 - jupyter-server-proxy
@@ -52,8 +56,8 @@ dependencies:
 - sage
 
 # Octave
-- octave
-- octave_kernel
+#- octave
+#- octave_kernel
 
 - pip:
     # For Erwan Pannier <erwan.pannier@centralesupelec.fr>
