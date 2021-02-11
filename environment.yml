@@ -42,6 +42,8 @@ dependencies:
 - qgrid          # same
 
 # R
+- r
+- r-essentials
 - r-recommended
 - r-animation
 - r-psych
