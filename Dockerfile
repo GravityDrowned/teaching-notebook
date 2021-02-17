@@ -35,27 +35,26 @@ RUN (echo 'kernel.core_uses_pid = 0'; echo 'kernel.core_pattern = core') > /etc/
 
 USER $NB_UID
 
-# Install mamba
-RUN conda install mamba -c conda-forge
-
-# Install the base software stack
-# RUN conda update  -n base -c conda-forge --update-all
 COPY environment.yml .
-RUN mamba env update -n base -f environment.yml && rm environment.yml
 
-# Workaround: pip installed nbgrader-dev requires pyyaml 5.4
-# but pip refuses by default to upgrade conda's pyyaml 5.3
-RUN pip3 install --ignore-installed PyYAML
-
+# Install mamba
+# Install the base software stack
+# Install the software stack for each of the given repositories
 # The repo for the course "Introduction à la science des données"
 # is outdated and clashes with other courses (nbgrader configuration).
-# Disabled
+# Disabled:
 #  https://github.com/madclam/info113/                    \
+# Workaround: pip installed nbgrader-dev requires pyyaml 5.4
+# but pip refuses by default to upgrade conda's pyyaml 5.3
 
-# Install the software stack for each of the following repositories
-RUN for REPO in                                                \
-        https://gitlab.u-psud.fr/nicolas.thiery/scripts.git           \
+RUN conda install mamba -c conda-forge                      && \
+    mamba env update -n base -f environment.yml             && \
+    rm environment.yml                                      && \
+    pip3 install --ignore-installed PyYAML                  && \
+    for REPO in                                                \
+        https://gitlab.u-psud.fr/nicolas.thiery/scripts.git    \
         https://gitlab.u-psud.fr/Info111/ComputerLab.git       \
+	https://gitlab.u-psud.fr/L1Info/IntroScienceDonnees/ComputerLab.git \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
         https://gitlab.u-psud.fr/M1-ISD/AlgorithmiqueAvancee/Instructors \
         https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
@@ -68,16 +67,18 @@ RUN for REPO in                                                \
         (cd repo; test -d binder && cd binder; mamba env update -n base -f environment.yml) &&         \
         rm -rf repo                                 ||         \
         break 0;                                               \
-    done
+    done                                                    && \
+    mamba clean --all                                       && \
+    pip cache purge
 
 ## Install SageMath, for now in a different environment
 #RUN mamba create --yes -n sage sage=9.1
 
 # Enable the Visual Studio proxy extension in notebook and lab
 # Taken from https://github.com/betatim/vscode-binder/blob/master/postBuild
-RUN jupyter serverextension enable --py jupyter_server_proxy
-RUN jupyter labextension install @jupyterlab/server-proxy
-#RUN code-server --install-extension ms-python.python
+# RUN jupyter serverextension enable --py jupyter_server_proxy
+# RUN jupyter labextension install @jupyterlab/server-proxy
+# RUN code-server --install-extension ms-python.python
 
 # Install unpackaged jupyterlab extensions
 # run_all_buttons is currently incompatible with latest JupyterLab 3;
@@ -97,4 +98,4 @@ RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
     jupyter lab clean && \
     jlpm cache clean && \
     npm cache clean --force && \
-    pip cache purge; exit 0
+    exit 0

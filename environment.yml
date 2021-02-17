@@ -14,7 +14,8 @@ dependencies:
 #- rise                         # Slides
 - nbdime                       # Jupyter-git integration
 #- nb_conda_kernels             # In particular for sagemath which is not installed by conda
-- voila                        # Voilà standalone applications and dashboards
+# Disabled due to incompatibility with nbconvert 5.6 which is imposed by nbgrader
+# - voila                        # Voilà standalone applications and dashboards
 - pip
 
 # Compilation tools (for compilation courses)
@@ -22,7 +23,7 @@ dependencies:
 - flex
 
 # Visual Studio (conda packages)
-- code-server
+# - code-server
 - jupyter-server-proxy
 
 # jupyter-desktop-server
@@ -66,6 +67,6 @@ dependencies:
     # A fast line-by-line code for high-resolution infrared molecular spectra
     - radis
     # Visual Studio (proxy)
-    - jupyter-vscode-proxy
+    #- jupyter-vscode-proxy
     # jupyter-desktop-server
-    - jupyter-desktop-server
+    #- jupyter-desktop-server
