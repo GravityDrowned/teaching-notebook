@@ -32,10 +32,11 @@ RUN echo 'ulimit -c 10000; ulimit -f 100000' > /etc/profile.d/05-ulimit.sh
 RUN echo 'ulimit -c 10000; ulimit -f 100000' > /etc/profile.d/05-ulimit.sh
 # Force core files to be named 'core'
 RUN (echo 'kernel.core_uses_pid = 0'; echo 'kernel.core_pattern = core') > /etc/sysctl.d/60-local.conf
-# Restrict jupytext to only notebook and markdown files
-RUN echo '{ "ContentsManager": {"notebook_extensions": "ipynb,md" } }' > /opt/conda/etc/jupyter/jupyter_notebook_config.json
 
 USER $NB_UID
+
+# Restrict jupytext to only notebook and markdown files (hacky)
+RUN echo '{ "ContentsManager": {"notebook_extensions": "ipynb,md" } }' > /opt/conda/etc/jupyter/jupyter_notebook_config.json
 
 COPY environment.yml .
 
