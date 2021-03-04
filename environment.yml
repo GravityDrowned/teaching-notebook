@@ -6,6 +6,7 @@ channels:
 
 dependencies:
 - mamba
+- python=3.8
 - notebook
 - jupyterlab
 - jupyter_contrib_nbextensions
