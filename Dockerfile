@@ -59,7 +59,7 @@ RUN conda install mamba -c conda-forge                      && \
         https://gitlab.u-psud.fr/Info111/ComputerLab.git       \
 	https://gitlab.u-psud.fr/L1Info/IntroScienceDonnees/ComputerLab.git \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
-        https://gitlab.u-psud.fr/M1-ISD/AlgorithmiqueAvancee/Instructors \
+        https://gitlab.u-psud.fr/M1-ISD/AlgorithmiqueAvancee/ComputerLab \
         https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
         ; do                                                   \
         echo =================================================;\
