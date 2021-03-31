@@ -95,9 +95,12 @@ RUN jupyter labextension install @wallneradam/run_all_buttons; exit 0
 #     npm cache clean --force
 
 # Force nbgrader extension reinstallation to ensure 0.7.dev
+# Install Min's editor-tabs extension to enable tabs in the jupyter editor
 RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
     jupyter nbextension enable --sys-prefix --py nbgrader && \
     jupyter serverextension enable --sys-prefix --py nbgrader && \
+    jupyter nbextension install --sys-prefix https://raw.githubusercontent.com/minrk/ipython_extensions/master/nbextensions/editor-tabs.js && \
+    jupyter nbextension enable --section edit editor-tabs && \
     jupyter lab clean && \
     jlpm cache clean && \
     npm cache clean --force && \
