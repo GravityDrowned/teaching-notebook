@@ -27,9 +27,8 @@ RUN echo 'shopt -s extglob' > /etc/profile.d/03-extglob.sh
 # Force activation for everyone.
 RUN echo 'eval "$(command conda shell.bash hook 2> /dev/null)"' > /etc/profile.d/04-conda-activate.sh
 # Limit to 10M the size of core dumps
-# Limit to 100M the size of files generated from commands in the shell
-RUN echo 'ulimit -c 10000; ulimit -f 100000' > /etc/profile.d/05-ulimit.sh
-RUN echo 'ulimit -c 10000; ulimit -f 100000' > /etc/profile.d/05-ulimit.sh
+# Limit to 250M the size of files generated from commands in the shell
+RUN echo 'ulimit -c 10000; ulimit -f 250000' > /etc/profile.d/05-ulimit.sh
 # Force core files to be named 'core'
 RUN (echo 'kernel.core_uses_pid = 0'; echo 'kernel.core_pattern = core') > /etc/sysctl.d/60-local.conf
 
