@@ -49,8 +49,7 @@ COPY environment.yml .
 # Workaround: pip installed nbgrader-dev requires pyyaml 5.4
 # but pip refuses by default to upgrade conda's pyyaml 5.3
 
-RUN conda install mamba -c conda-forge                      && \
-    mamba env update -n base -f environment.yml             && \
+RUN mamba env update -n base -f environment.yml             && \
     rm environment.yml                                      && \
     pip3 install --ignore-installed PyYAML                  && \
     for REPO in                                                \
