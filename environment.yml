@@ -24,7 +24,7 @@ dependencies:
 - flex
 
 # Visual Studio (conda packages)
-# - code-server
+- code-server
 - jupyter-server-proxy
 
 # jupyter-desktop-server
