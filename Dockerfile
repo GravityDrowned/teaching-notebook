@@ -55,7 +55,7 @@ RUN mamba env update -n base -f environment.yml             && \
     for REPO in                                                \
         https://gitlab.u-psud.fr/nthiery/scripts.git    \
         https://gitlab.dsi.universite-paris-saclay.fr/Info111/ComputerLab.git       \
-	https://gitlab.u-psud.fr/L1Info/IntroScienceDonnees/ComputerLab.git \
+        https://gitlab.u-psud.fr/L1Info/IntroScienceDonnees/ComputerLab.git \
         https://gitlab.u-psud.fr/Info122/Info122.git           \
         https://gitlab.u-psud.fr/M1-ISD/AlgorithmiqueAvancee/ComputerLab \
         https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
