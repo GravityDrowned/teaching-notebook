@@ -23,6 +23,9 @@ dependencies:
 - bison
 - flex
 
+# Workaround to enable installing xeus-cling later on
+- _openmp_mutex=*=1_gnu
+
 # Visual Studio (conda packages)
 - code-server
 - jupyter-server-proxy

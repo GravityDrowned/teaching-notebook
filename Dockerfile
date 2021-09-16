@@ -52,6 +52,7 @@ COPY environment.yml .
 RUN mamba env update -n base -f environment.yml             && \
     rm environment.yml                                      && \
     pip3 install --ignore-installed PyYAML                  && \
+    mamba uninstall llvm-openmp -c conda-forge              && \
     for REPO in                                                \
         https://gitlab.u-psud.fr/nicolas.thiery/scripts.git    \
         https://gitlab.dsi.universite-paris-saclay.fr/Info111/ComputerLab.git       \
