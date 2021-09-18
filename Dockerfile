@@ -78,9 +78,11 @@ RUN mamba env update -n base -f environment.yml             && \
 
 # Enable the Visual Studio proxy extension in notebook and lab
 # Taken from https://github.com/betatim/vscode-binder/blob/master/postBuild
-RUN jupyter serverextension enable --py jupyter_server_proxy
+# RUN jupyter serverextension enable --py jupyter_server_proxy
 RUN jupyter labextension install @jupyterlab/server-proxy
 RUN code-server --install-extension ms-python.python
+
+
 
 # Install unpackaged jupyterlab extensions
 # run_all_buttons is currently incompatible with latest JupyterLab 3;
