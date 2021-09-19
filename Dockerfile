@@ -81,6 +81,7 @@ RUN mamba env update -n base -f environment.yml             && \
 # RUN jupyter serverextension enable --py jupyter_server_proxy
 RUN jupyter labextension install @jupyterlab/server-proxy
 RUN code-server --install-extension ms-python.python
+RUN pip install git+https://github.com/betatim/vscode-binder.git
 
 
 
@@ -105,4 +106,5 @@ RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
     jupyter lab clean && \
     jlpm cache clean && \
     npm cache clean --force && \
+    pip cache purge && \
     exit 0
