@@ -36,3 +36,9 @@ tests_R_packages:
   stage: test
   script:
     - R < test_R_packages.r --no-save
+
+tests_cpp_packages:
+  stage: test
+  script:
+    - cling -std=c++14 < test_cpp_packages.cpp 2>&1 | tee log 2>&1 && test -z "`grep error log`"
+    - cling -std=c++17 < test_cpp_packages.cpp 2>&1 | tee log 2>&1 && test -z "`grep error log`"
