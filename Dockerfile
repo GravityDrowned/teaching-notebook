@@ -84,7 +84,7 @@ RUN code-server --install-extension ms-python.python
 RUN pip install git+https://github.com/betatim/vscode-binder.git
 
 # Install pytorch for cpu (conda install fails for now)
-pip install torch==1.9.1+cpu torchvision==0.10.1+cpu torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install torch==1.9.1+cpu torchvision==0.10.1+cpu torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
 
 # Install unpackaged jupyterlab extensions
 # run_all_buttons is currently incompatible with latest JupyterLab 3;
