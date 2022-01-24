@@ -58,6 +58,12 @@ dependencies:
 # FactoMineR package: potential use by Albane Saintenoy and students for PCA / clustering
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
+# add r-rjava and other needed for xlxs (to read excel tables in R)
+- r-rjava
+- r-xlsxjars
+- r-covr
+- r-rex
+- r-xlsx
 
 # SageMath
 - sage
