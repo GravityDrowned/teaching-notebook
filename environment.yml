@@ -64,7 +64,7 @@ dependencies:
 #- r-xlsxjars
 #- r-covr
 #- r-rex
-#- r-xlsx
+- r-xlsx
 
 # SageMath
 - sage
