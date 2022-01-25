@@ -1,4 +1,4 @@
-# Software installed by default on Paris-Saclay JupyterHub's server
+## Software installed by default on Paris-Saclay JupyterHub's server
 name: jupyterhub-paris-saclay
 
 channels:
@@ -60,7 +60,7 @@ dependencies:
 - r-factominer
 # add r-rjava and other needed for xlxs (to read excel tables in R)
 #- r-rjava
-- conda-forge/label/cf202003 r-xlsx
+#- conda-forge/label/cf202003 r-xlsx
 #- r-xlsxjars
 #- r-covr
 #- r-rex
