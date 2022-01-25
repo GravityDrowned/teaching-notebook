@@ -59,7 +59,8 @@ dependencies:
 # in the course "Traitement de données hydrologiques" of M2 HSS
 - r-factominer
 # add r-rjava and other needed for xlxs (to read excel tables in R)
-- r-rjava
+#- r-rjava
+- conda-forge/label/cf202003 r-xlsx
 #- r-xlsxjars
 #- r-covr
 #- r-rex
