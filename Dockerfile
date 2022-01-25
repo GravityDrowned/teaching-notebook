@@ -5,7 +5,7 @@ FROM jupyter/tensorflow-notebook
 USER root
 
 # Install system utilities with apt
-# Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
+## Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         openssh-client rsync unison less tree curl gdb libopenjp2-7 \
@@ -16,21 +16,23 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install JAVA OpenJDK-8
+## Install JAVA OpenJDK-8
 RUN apt-get update && \
     apt-get install -y openjdk-8-jdk && \
     apt-get install -y ant && \
     apt-get clean;
     
-# Fix certificate issues JAVA OpenJDK-8
+## Fix certificate issues JAVA OpenJDK-8
 RUN apt-get update && \
     apt-get install ca-certificates-java && \
     apt-get clean && \
     update-ca-certificates -f;
 
-# Setup JAVA_HOME -- useful for docker commandline
+## Setup JAVA_HOME -- useful for docker commandline
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN export JAVA_HOME
+
+
 
 # Setup default prompt
 RUN echo 'export PS1=`echo $JUPYTERHUB_USER| sed s/-at-.*//`"@jupyterhub:\w\$ "' > /etc/profile.d/02-prompt.sh
