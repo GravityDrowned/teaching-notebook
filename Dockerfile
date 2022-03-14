@@ -4,6 +4,10 @@ FROM jupyter/tensorflow-notebook
 
 USER root
 
+ENV GAMMAPY_DATA=/data/2022-03-28-ISAPP/gammapy-datasets/
+RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner
+RUN pip install sherpa
+
 # Install system utilities with apt
 ## Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
 RUN apt-get update && \
