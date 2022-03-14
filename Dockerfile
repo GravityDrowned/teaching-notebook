@@ -4,9 +4,6 @@ FROM jupyter/tensorflow-notebook
 
 USER root
 
-ENV GAMMAPY_DATA=/data/2022-03-28-ISAPP/gammapy-datasets/
-RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner
-RUN pip install sherpa
 
 # Install system utilities with apt
 ## Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
@@ -33,8 +30,8 @@ RUN apt-get update && \
     update-ca-certificates -f;
 
 ## Setup JAVA_HOME -- useful for docker commandline
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
-RUN export JAVA_HOME
+#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+#RUN export JAVA_HOME
 
 
 
@@ -95,6 +92,11 @@ RUN mamba env update -n base -f environment.yml             && \
     mamba clean --all                                       && \
     pip cache purge
 
+## Added for school ISAPP
+ENV GAMMAPY_DATA=/data/2022-03-28-ISAPP/gammapy-datasets/
+RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner
+RUN pip install sherpa
+
 ## Install SageMath, for now in a different environment
 #RUN mamba create --yes -n sage sage=9.1
 
@@ -108,6 +110,7 @@ RUN pip install git+https://github.com/betatim/vscode-binder.git
 # Install pytorch for cpu (conda install fails for now)
 RUN pip install torch==1.9.1+cpu torchvision==0.10.1+cpu torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
 #RUN pip install git+https://gitlab.inria.fr/dchen/CKN-seq.git 
+
 
 # Install unpackaged jupyterlab extensions
 # run_all_buttons is currently incompatible with latest JupyterLab 3;
