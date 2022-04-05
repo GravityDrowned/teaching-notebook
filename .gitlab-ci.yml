@@ -3,24 +3,23 @@ stages:
   - test
 
 variables:
+  IMAGE: "${CI_REGISTRY_IMAGE}/image:latest"
+  STORAGE_DRIVER: vfs # for buildah
+  REGISTRY_AUTH_FILE: /root/auth.json
+
   IMAGE: ${CI_REGISTRY_IMAGE}
 
 build-image:
-  stage: build 
-  #and stage
-  #services:
-  #  - docker:dind
-  #image: docker:git
+  stage: build #and stage
+  image: tomkukral/buildah:0.30
 
   before_script:
-    - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - podman login --username "${CI_REGISTRY_USER}" --password "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
   script:
-    - docker pull jupyter/tensorflow-notebook
-    - docker build -t ${IMAGE} .
-    - docker push ${IMAGE}
+    - buildah build-using-dockerfile --format docker -t ${IMAGE} --file .Dockerfile binder/
+    - buildah push --authfile ${REGISTRY_AUTH_FILE} ${IMAGE}
   after_script:
-    - 'docker logout $CI_REGISTRY'
-
+    - podman logout "${CI_REGISTRY}"
   only:
     changes:
       - Dockerfile
