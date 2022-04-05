@@ -4,7 +4,6 @@ FROM jupyter/tensorflow-notebook
 
 USER root
 
-
 # Install system utilities with apt
 ## Also install ocaml and dependency rlwrap for L2 CS course by Kim Nguyen
 RUN apt-get update && \
