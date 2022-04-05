@@ -60,10 +60,8 @@ COPY environment.yml .
 # Install mamba
 # Install the base software stack
 # Install the software stack for each of the given repositories
-# The repo for the course "Introduction à la science des données"
-# is outdated and clashes with other courses (nbgrader configuration).
 # Disabled:
-#  https://github.com/madclam/info113/                    \
+#  https://gitlab.dsi.universite-paris-saclay.fr/L1InfoImagesNumeriques/Info122.git
 # Workaround: pip installed nbgrader-dev requires pyyaml 5.4
 # but pip refuses by default to upgrade conda's pyyaml 5.3
 
@@ -74,10 +72,9 @@ RUN mamba env update -n base -f environment.yml             && \
     for REPO in                                                \
         https://gitlab.dsi.universite-paris-saclay.fr/MethNum/scripts.git     \
         https://gitlab.dsi.universite-paris-saclay.fr/Info111/ComputerLab.git \
-        https://gitlab.u-psud.fr/L1Info/IntroScienceDonnees/ComputerLab.git \
-        https://gitlab.u-psud.fr/Info122/Info122.git           \
-        https://gitlab.u-psud.fr/M1-ISD/AlgorithmiqueAvancee/ComputerLab \
-        https://gitlab.u-psud.fr/nicolas.thiery/ter-jupyter    \
+        https://gitlab.dsi.universite-paris-saclay.fr/L1InfoIntroScienceDonnees/ComputerLab.git \
+        https://gitlab.dsi.universite-paris-saclay.fr/M1InfoISDAlgorithmiqueAvancee/ComputerLab \
+        https://gitlab.dsi.universite-paris-saclay.fr/nicolas.thiery/ter-jupyter    \
         ; do                                                   \
         echo =================================================;\
         echo Installing software stack for:                   ;\
@@ -111,7 +108,6 @@ RUN pip install git+https://github.com/betatim/vscode-binder.git
 # Install pytorch for cpu (conda install fails for now)
 RUN pip install torch==1.9.1+cpu torchvision==0.10.1+cpu torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
 #RUN pip install git+https://gitlab.inria.fr/dchen/CKN-seq.git 
-
 
 # Install unpackaged jupyterlab extensions
 # run_all_buttons is currently incompatible with latest JupyterLab 3;
