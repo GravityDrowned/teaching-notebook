@@ -96,6 +96,8 @@ RUN mamba env update -n base -f environment.yml             && \
 ENV GAMMAPY_DATA=/data/2022-03-28-ISAPP/gammapy-datasets/
 RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner
 RUN pip install sherpa
+RUN pip install astroplan tsp_solver2 ligo.skymap scikit-spatial #newest
+
 
 ## Install SageMath, for now in a different environment
 #RUN mamba create --yes -n sage sage=9.1
