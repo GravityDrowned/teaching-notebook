@@ -6,10 +6,11 @@ variables:
   IMAGE: ${CI_REGISTRY_IMAGE}
 
 build-image:
-  stage: build #and stage
-  services:
-    - docker:dind
-  image: docker:git
+  stage: build 
+  #and stage
+  #services:
+  #  - docker:dind
+  #image: docker:git
 
   before_script:
     - docker login -u gitlab-ci-token -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
