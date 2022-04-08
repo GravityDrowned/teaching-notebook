@@ -16,7 +16,7 @@ build-image:
   before_script:
     - podman login --username "${CI_REGISTRY_USER}" --password "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
   script:
-    - buildah build-using-dockerfile --format docker -t ${IMAGE} --file Dockerfile ./
+    - buildah build-using-dockerfile --squash --format docker -t ${IMAGE} --file Dockerfile ./
     - buildah push --authfile ${REGISTRY_AUTH_FILE} ${IMAGE}
   after_script:
     - podman logout "${CI_REGISTRY}"
