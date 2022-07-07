@@ -91,7 +91,8 @@ RUN mamba env update -n base -f environment.yml             && \
 
 ## Added for school ISAPP
 ENV GAMMAPY_DATA=/data/2022-03-28-ISAPP/gammapy-datasets/
-RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner
+# RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner
+RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner voila zip
 RUN pip install sherpa
 RUN pip install astroplan tsp_solver2 ligo.skymap scikit-spatial #newest
 
