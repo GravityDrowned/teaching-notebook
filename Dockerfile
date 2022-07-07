@@ -2,7 +2,6 @@ FROM jupyter/tensorflow-notebook
 # FROM jupyter/scipy-notebook # just commented out
 #FROM jupyter/minimal-notebook
 
-
 USER root
 
 # Install system utilities with apt
