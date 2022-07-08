@@ -1,5 +1,6 @@
 # FROM jupyter/tensorflow-notebook
-FROM jupyter/tensorflow-notebook:2022-03-18
+# FROM jupyter/tensorflow-notebook:2022-03-18
+FROM jupyter/tensorflow-notebook:2022-04-05
 # FROM jupyter/scipy-notebook # just commented out
 #FROM jupyter/minimal-notebook
 
