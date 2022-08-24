@@ -1,11 +1,4 @@
-# FROM jupyter/tensorflow-notebook
-# FROM jupyter/tensorflow-notebook:2022-03-18
-# FROM jupyter/tensorflow-notebook:2022-04-05
-# FROM jupyter/tensorflow-notebook:2022-04-25
-# FROM jupyter/tensorflow-notebook:2022-05-03
-FROM jupyter/tensorflow-notebook:2022-05-13
-# FROM jupyter/tensorflow-notebook:2022-05-31
-
+FROM jupyter/tensorflow-notebook
 # FROM jupyter/scipy-notebook # just commented out
 #FROM jupyter/minimal-notebook
 
@@ -28,7 +21,7 @@ RUN apt-get update && \
     apt-get install -y openjdk-8-jdk && \
     apt-get install -y ant && \
     apt-get clean;
-    
+
 ## Fix certificate issues JAVA OpenJDK-8
 RUN apt-get update && \
     apt-get install ca-certificates-java && \
@@ -67,8 +60,10 @@ COPY environment.yml .
 # Install mamba
 # Install the base software stack
 # Install the software stack for each of the given repositories
+# The repo for the course "Introduction à la science des données"
+# is outdated and clashes with other courses (nbgrader configuration).
 # Disabled:
-#  https://gitlab.dsi.universite-paris-saclay.fr/L1InfoImagesNumeriques/Info122.git
+#  https://github.com/madclam/info113/                    \
 # Workaround: pip installed nbgrader-dev requires pyyaml 5.4
 # but pip refuses by default to upgrade conda's pyyaml 5.3
 
@@ -76,32 +71,24 @@ RUN mamba env update -n base -f environment.yml             && \
     rm environment.yml                                      && \
     pip3 install --ignore-installed PyYAML                  && \
     mamba uninstall llvm-openmp -c conda-forge              && \
-    for REPO in                                                \
-        https://gitlab.dsi.universite-paris-saclay.fr/MethNum/scripts.git     \
-        https://gitlab.dsi.universite-paris-saclay.fr/Info111/ComputerLab.git \
-        https://gitlab.dsi.universite-paris-saclay.fr/L1InfoInitiationScienceDonnees/ComputerLab.git \
-        https://gitlab.dsi.universite-paris-saclay.fr/M1InfoISDAlgorithmiqueAvancee/ComputerLab \
-        https://gitlab.dsi.universite-paris-saclay.fr/nicolas.thiery/ter-jupyter    \
-        ; do                                                   \
-        echo =================================================;\
-        echo Installing software stack for:                   ;\
-        echo   $REPO                                          ;\
-        echo =================================================;\
-        git clone $REPO repo                        &&         \
-        (cd repo; test -d binder && cd binder; mamba env update -n base -f environment.yml) &&         \
-        rm -rf repo                                 ||         \
-        break 0;                                               \
-    done                                                    && \
+    #for REPO in                                                \
+    #    https://gitlab.dsi.universite-paris-saclay.fr/MethNum/scripts.git     \
+    #    https://gitlab.dsi.universite-paris-saclay.fr/Info111/ComputerLab.git \
+    #    https://gitlab.dsi.universite-paris-saclay.fr/L1InfoInitiationScienceDonnees/ComputerLab.git \
+    #    https://gitlab.dsi.universite-paris-saclay.fr/M1InfoISDAlgorithmiqueAvancee/ComputerLab \
+    #    https://gitlab.dsi.universite-paris-saclay.fr/nicolas.thiery/ter-jupyter    \
+    #    ; do                                                   \
+    #    echo =================================================;\
+    #    echo Installing software stack for:                   ;\
+    #    echo   $REPO                                          ;\
+    #    echo =================================================;\
+    #    git clone $REPO repo                        &&         \
+    #    (cd repo; test -d binder && cd binder; mamba env update -n base -f environment.yml) &&         \
+    #    rm -rf repo                                 ||         \
+    #    break 0;                                               \
+    #done                                                    && \
     mamba clean --all                                       && \
     pip cache purge
-
-## Added for school ISAPP
-ENV GAMMAPY_DATA=/data/2022-03-28-ISAPP/gammapy-datasets/
-RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner
-# RUN mamba install -y -c conda-forge gammapy healpy iminuit naima emcee corner voila zip
-RUN pip install sherpa
-RUN pip install astroplan tsp_solver2 ligo.skymap scikit-spatial #newest
-
 
 ## Install SageMath, for now in a different environment
 #RUN mamba create --yes -n sage sage=9.1
@@ -115,7 +102,7 @@ RUN pip install git+https://github.com/betatim/vscode-binder.git
 
 # Install pytorch for cpu (conda install fails for now)
 RUN pip install torch==1.9.1+cpu torchvision==0.10.1+cpu torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
-#RUN pip install git+https://gitlab.inria.fr/dchen/CKN-seq.git 
+#RUN pip install git+https://gitlab.inria.fr/dchen/CKN-seq.git
 
 # Install unpackaged jupyterlab extensions
 # run_all_buttons is currently incompatible with latest JupyterLab 3;
@@ -130,14 +117,27 @@ RUN jupyter labextension install @wallneradam/run_all_buttons; exit 0
 
 # Force nbgrader extension reinstallation to ensure 0.7.dev
 # Install Min's editor-tabs extension to enable tabs in the jupyter editor
-RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
-    jupyter nbextension enable --sys-prefix --py nbgrader && \
-    jupyter serverextension enable --sys-prefix --py nbgrader && \
-    jupyter nbextension install --sys-prefix https://raw.githubusercontent.com/minrk/ipython_extensions/master/nbextensions/editor-tabs.js && \
-    jupyter nbextension enable --section edit editor-tabs && \
-    jupyter lab clean && \
+
+
+# Michi: this leads to an error:
+# `Failed to deploy '<unknown> Dockerfile: Dockerfile': java.io.IOException: Cannot find image jupyter-vscode-proxy locally`
+# This happens because it depends on some french gitlabs I removed above
+
+#RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
+#    jupyter nbextension enable --sys-prefix --py nbgrader && \
+#    jupyter serverextension enable --sys-prefix --py nbgrader && \
+#    jupyter nbextension install --sys-prefix https://raw.githubusercontent.com/minrk/ipython_extensions/master/nbextensions/editor-tabs.js && \
+#    jupyter nbextension enable --section edit editor-tabs && \
+#    jupyter lab clean && \
+#    jlpm cache clean && \
+#    npm cache clean --force && \
+#    exit 0
+
+
+RUN jupyter lab clean && \
     jlpm cache clean && \
     npm cache clean --force && \
     exit 0
+
 
 # pip cache purge && \
