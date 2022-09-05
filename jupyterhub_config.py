@@ -1,5 +1,8 @@
 c = get_config()  # noqa
 
+c.JupyterHub.port = 9000
+
+
 # dummy for testing. Don't use this in production!
 c.JupyterHub.authenticator_class = "dummy"
 
