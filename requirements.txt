@@ -1,2 +1,2 @@
-dockerspawner
+jupyterhub-kubespawner
 jupyterhub-dummyauthenticator
